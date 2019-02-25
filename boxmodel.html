@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      html * {
+        padding:0;
+        margin:0;
+      }
+    </style>
+  </head>
+  <body>
+    <style media="screen">
+      #sec{
+        background-color:red;
+      }
+      .child{
+        height:100px;
+        margin-top:10px;
+        background-color:yellow;
+      }
+    </style>
+    <section id="sec">
+      <article class="child">
+
+      </article>
+    </section>
+
+    <!-- BFC垂直方向边距重叠 -->
+    <section id="margin">
+      <style media="screen">
+        #margin {
+          background-color:pink;
+          overflow:hidden;
+        }
+        #margin>p{
+          margin:5px auto 25px;
+          background-color:red;
+        }
+      </style>
+      <p>1</p>
+      <div style="overflow:hidden">
+        <p>2</p>
+      </div>
+      <p>3</p>
+    </section>
+
+    <!-- BFC不予 float 重叠 -->
+    <section id="layout">
+      <style>
+        #layout {
+          background: red;
+          margin-top: 20px;
+        }
+        .left {
+          float: left;
+          width: 100px;
+          height: 100px;
+          background: pink;
+        }
+        .right {
+          height: 110px;
+          background: yellow;
+          /* BFC */
+          overflow: auto;
+        }
+      </style>
+      <div class="left"></div>
+      <div class="right"></div>
+    </section>
+
+    <!-- BFC 子元素即使是 float 也会参与计算-->
+    <section id="float">
+      <style>
+        #float{
+          background: red;
+          /* BFC */
+          overflow: auto;
+          margin-top: 20px;
+        }
+        .float {
+          float: left;
+          font-size: 30px;
+          background: yellow;
+        }
+      </style>
+      <div class="float">我是浮动元素</div>
+    </section>
+  </body>
+</html>
